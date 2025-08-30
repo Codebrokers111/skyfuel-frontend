@@ -1,69 +1,46 @@
-# React + TypeScript + Vite
+# 🌌 Skyfuel Supplements
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Skyfuel Supplements is a lightweight **React + TypeScript + Vite** powered website built for selling premium health and fitness supplements. The project focuses on simplicity and speed, with a clean design and minimal product catalog (~12 products).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- ⚡ **Fast frontend** built with **Vite + React + TypeScript**
+- 🛍️ **Product pages** with details and add-to-cart functionality
+- 💳 **Payment integration** (planned: Razorpay/Stripe)
+- 🎨 Styled with **TailwindCSS** for responsive, mobile-first UI
+- 🔑 **Authentication** (Login / Signup) for customers
+- 📊 Lightweight **admin dashboard** (future roadmap)
+- 🌙 **Dark mode support** (optional)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Frontend:** React + TypeScript + Vite
+- **Styling:** TailwindCSS (with plans for shadcn/ui components)
+- **Routing:** React Router
+- **State Management:** Zustand / Context API (for cart & auth)
+- **Backend (planned):** Node.js + Express + PostgreSQL / MongoDB
+- **Deployment:** Vercel / Netlify for frontend, Render/Heroku for backend
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 🚀 Getting Started
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 1️⃣ Clone the repo
+
+```bash
+# Clone the repo
+git clone https://github.com/<your-username>/skyfuel-supplements.git
+cd skyfuel-supplements
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
 ```
