@@ -1,20 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import {  BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from './components/Navbar';
-import Home from './components/Home';
-import Alert from './components/Alert'; 
-import Footer from './components/Footer';
+import { useState, useEffect } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { initFlowbite } from "flowbite";
+import Navbar from "./components/Navbar";
+import Home from "./components/Home";
+import Alert from "./components/Alert";
+import Footer from "./components/Footer";
 import UserState from "./context/UserState";
-import Scrolltotop from './components/Scrolltotop';
-import Login from './components/Login';
+import Scrolltotop from "./components/Scrolltotop";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 
 function App() {
   const [alert, setAlert] = useState(null);
   const [login, setLogin] = useState(true);
   const host = import.meta.env.VITE_HOST;
   const c_sitekey = import.meta.env.VITE_CAPTCHA_SITE_KEY;
-  console.log("Host:", host);
+
+  useEffect(() => {
+    initFlowbite();
+  }, []);
 
   const showAlert = (message, type) => {
     setAlert({ msg: message, type });
@@ -32,20 +37,28 @@ function App() {
     <UserState prop={{ host, showAlert }}>
       <Router>
         <Scrolltotop />
-        <Navbar prop={{showAlert, Logdin, Logdout, login}}/>
+        <Navbar prop={{ showAlert, Logdin, Logdout, login }} />
         <Alert alert={alert} />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login prop={{ host, Logdout, showAlert, c_sitekey }} />}></Route>
+          <Route
+            path="/login"
+            element={<Login prop={{ host, Logdout, showAlert, c_sitekey }} />}
+          ></Route>
+          <Route
+            exact
+            path="/signup"
+            element={<Signup prop={{ host, Logdout, showAlert, c_sitekey }} />}
+          ></Route>
           {/* <Route path="/products" element={<Products />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} /> */}
         </Routes>
-        <Footer/>
-    </Router>
+        <Footer />
+      </Router>
     </UserState>
-  )
+  );
 }
 
 export default App;
