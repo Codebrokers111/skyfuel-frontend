@@ -16,7 +16,7 @@ const UserState = (props) => {
       const response = await fetch(`${host}/auth/getuser`, {
         method: "GET",
         headers: {
-          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
 
@@ -36,7 +36,13 @@ const UserState = (props) => {
     } catch (err) {
       showAlert("There is Error at Accessing Server", "danger");
     }
-};
+  };
+
+  const updateUser = () => {
+    if (!localStorage.getItem("token")) {
+      setUserId("");
+    }
+  };
 
   const verifyCaptcha = async (token) => {
     try {
@@ -58,6 +64,42 @@ const UserState = (props) => {
     }
   };
 
+  const sendEmail = async (name, email, page) => {
+    try {
+      const send = await fetch(`${host}/mail/sendmail`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email, name: name, page: page }),
+      });
+      if (send.status === 200) {
+        const reply = await send.json();
+        return reply;
+      } else {
+        return { msg: "Email was not sent", uid: null };
+      }
+    } catch (err) {
+      showAlert("There is Error Accessing Server", "danger");
+    }
+  };
+
+  const verifyEmail = async (uid, otp) => {
+    try {
+      const send = await fetch(`${host}/mail/verifyotp`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ userId: uid, otp: otp }),
+      });
+      const reply = await send.json();
+      return reply;
+    } catch (err) {
+      showAlert("There is Error Accessing Server", "danger");
+    }
+  };
+
   return (
     <div>
       <userContext.Provider
@@ -65,12 +107,15 @@ const UserState = (props) => {
           user,
           userIdRef,
           getUser,
-          verifyCaptcha
+          updateUser,
+          verifyCaptcha,
+          sendEmail,
+          verifyEmail,
         }}
       >
         {props.children}
       </userContext.Provider>
     </div>
-  )
-}
+  );
+};
 export default UserState;
