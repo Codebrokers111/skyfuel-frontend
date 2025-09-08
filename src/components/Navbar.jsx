@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useContext, useState } from "react";
+import { useEffect, useRef, useContext, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { userContext } from "../context/userContext";
 import { useMediaQuery } from "react-responsive";
 
-const Navbar = ( props) => {
+const Navbar = (props) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { Logdin, showAlert } = props.prop;
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Navbar = ( props) => {
   const rollNavBack = () => {
     isTabletOrMobile && ref.current.click();
   };
-  
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("skyfuel-userId");
@@ -49,11 +49,13 @@ const Navbar = ( props) => {
   };
 
   return (
-    <nav className="bg-white border-b border-gray-200 px-6 py-2.5 dark:bg-gray-800">
+    <nav className="bg-white dark:bg-gray-900 sticky w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 py-2 mb-0.5">
       <div className="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
         {/* Logo */}
         <Link to="/" className="flex items-center ">
-          <span className={`self-center text-xl font-semibold whitespace-nowrap dark:text-white ${location.pathname === "/signup" ? "text-red-600" : "text-blue-600"}`}>
+          <span
+            className={`self-center text-xl font-semibold whitespace-nowrap dark:text-white ${location.pathname === "/signup" ? "text-red-600" : "text-blue-600"}`}
+          >
             skyfuel
           </span>
         </Link>
@@ -113,113 +115,106 @@ const Navbar = ( props) => {
           {!localStorage.getItem("token") ? (
             <form className="d-flex">
               <div className="flex flex-col space-y-2 mt-4 md:mt-0 md:flex-row md:space-y-0 md:space-x-3 md:ml-auto">
-              <Link
-                style={{
-                  display: `${
-                    location.pathname === "/login" ? "none" : "initial"
-                  }`,
-                }}
-                className={`border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-4 py-2 rounded text-sm text-center transition-colors`}
-                role="button"
-                to={"/login"}
-                onClick={rollNavBack}
-              >
-                Login
-              </Link>
-              <Link
-                style={{
-                  display: `${
-                    location.pathname === "/signup" ? "none" : "initial"
-                  }`,
-                }}
-                className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded text-sm text-center transition-colors"
-                role="button"
-                to={"/signup"}
-                onClick={rollNavBack}
-              >
-                Signup
-              </Link>
+                <Link
+                  style={{
+                    display: `${
+                      location.pathname === "/login" ? "none" : "initial"
+                    }`,
+                  }}
+                  className={`border hover:text-white px-4 py-2 rounded text-sm text-center transition-colors ${location.pathname === "/signup" ? "border-red-600 text-red-600 hover:bg-red-600" : "border-blue-600 text-blue-600 hover:bg-blue-600"}`}
+                  role="button"
+                  to={"/login"}
+                  onClick={rollNavBack}
+                >
+                  Login
+                </Link>
+                <Link
+                  style={{
+                    display: `${
+                      location.pathname === "/signup" ? "none" : "initial"
+                    }`,
+                  }}
+                  className="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded text-sm text-center transition-colors"
+                  role="button"
+                  to={"/signup"}
+                  onClick={rollNavBack}
+                >
+                  Signup
+                </Link>
               </div>
             </form>
           ) : (
-            <div className="relative inline-block text-left">
-            <button
-              id="dropdownUserButton"
-              data-dropdown-toggle="dropdownUserMenu"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 
+            <div>
+              <div className="relative inline-block text-left">
+                <button
+                  id="dropdownUserButton"
+                  data-dropdown-toggle="dropdownUserMenu"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 
                         focus:outline-none focus:ring-blue-300 font-medium rounded-lg 
                         text-sm px-5 py-2.5 text-center inline-flex items-center
                         dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              type="button"
-            >
-              <i className="fa-solid fa-user mr-2 text-yellow-400"></i>
-              {getInitials(user.name)}
-              <svg
-                className="w-2.5 h-2.5 ml-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 10 6"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="m1 1 4 4 4-4"
-                />
-              </svg>
-            </button>
+                  type="button"
+                >
+                  <i className="fa-solid fa-user mr-2 text-yellow-400"></i>
+                  {getInitials(user.name)}
+                  <svg
+                    className="w-2.5 h-2.5 ml-2"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="m1 1 4 4 4-4"
+                    />
+                  </svg>
+                </button>
 
-            {/* Dropdown Menu */}
-            <div
-              id="dropdownUserMenu"
-              className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg 
+                <div
+                  id="dropdownUserMenu"
+                  className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg 
                         shadow-sm w-56 dark:bg-gray-700"
-            >
-              <div className="px-4 py-3">
-                <h5 className="text-sm font-medium text-gray-900 dark:text-white">
-                  {user.name}
-                </h5>
-                <p className="text-sm text-gray-500 dark:text-gray-300 truncate">
-                  {user.email}
-                </p>
-              </div>
+                >
+                  <div className="px-4 py-3">
+                    <h5 className="text-sm font-medium text-gray-900 dark:text-white">
+                      {user.name}
+                    </h5>
+                    <p className="text-sm text-gray-500 dark:text-gray-300 truncate">
+                      {user.email}
+                    </p>
+                  </div>
 
-              <ul
-                className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                aria-labelledby="dropdownUserButton"
-              >
-                <li>
-                  <Link
-                    to="/account?details"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  <ul
+                    className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="dropdownUserButton"
                   >
-                    <i className="fa-solid fa-house fa-sm mr-2"></i> Account
-                  </Link>
-                </li>
-                {/* <li>
-                  <Link
-                    to="/urls?dashboard"
-                    className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                  >
-                    <i className="fa-solid fa-link fa-sm mr-2"></i> URLs
-                  </Link>
-                </li> */}
-                <li>
-                  <button
-                    onClick={handleLogout}
-                    className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 
+                    <li>
+                      <Link
+                        to="/account?details"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                      >
+                        <i className="fa-solid fa-house fa-sm mr-2"></i> Account
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={handleLogout}
+                        className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 
                               dark:hover:bg-gray-600 dark:text-red-400"
-                    type="button"
-                  >
-                    <i className="fa-solid fa-right-from-bracket fa-sm mr-2"></i> Logout
-                  </button>
-                </li>
-              </ul>
+                        type="button"
+                      >
+                        <i className="fa-solid fa-right-from-bracket fa-sm mr-2"></i>{" "}
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            
-          </div>
           )}
         </div>
       </div>

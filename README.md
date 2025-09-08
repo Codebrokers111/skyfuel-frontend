@@ -1,12 +1,12 @@
 # 🌌 Skyfuel Supplements
 
-Skyfuel Supplements is a lightweight **React + TypeScript + Vite** powered website built for selling premium health and fitness supplements. The project focuses on simplicity and speed, with a clean design and minimal product catalog (~12 products).
+Skyfuel Supplements is a lightweight **React + JavaScript + Vite** powered website built for selling premium health and fitness supplements. The project focuses on simplicity and speed, with a clean design and minimal product catalog (~12 products).
 
 ---
 
 ## ✨ Features
 
-- ⚡ **Fast frontend** built with **Vite + React + TypeScript**
+- ⚡ **Fast frontend** built with **Vite + React + JavaScript**
 - 🛍️ **Product pages** with details and add-to-cart functionality
 - 💳 **Payment integration** (planned: Razorpay/Stripe)
 - 🎨 Styled with **TailwindCSS** for responsive, mobile-first UI
@@ -18,7 +18,7 @@ Skyfuel Supplements is a lightweight **React + TypeScript + Vite** powered websi
 
 ## 🛠️ Tech Stack
 
-- **Frontend:** React + TypeScript + Vite
+- **Frontend:** React + JavaScript + Vite
 - **Styling:** TailwindCSS (with plans for shadcn/ui components)
 - **Routing:** React Router
 - **State Management:** Zustand / Context API (for cart & auth)
