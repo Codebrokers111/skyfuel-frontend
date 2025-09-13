@@ -1,40 +1,38 @@
-import React from "react";
-
-const Home = () => {
+const HomeProd = () => {
   const products = [
     {
       id: 1,
       name: "Supplement Vitamins",
       price: 1999,
-      image: new URL("../assets/prd_images/img1.jpg", import.meta.url).href,
+      image: new URL("../../assets/prd_images/img1.jpg", import.meta.url).href,
       rating: 4.5,
     },
     {
       id: 2,
       name: "Supplement Pro",
       price: 2999,
-      image: new URL("../assets/prd_images/img2.jpg", import.meta.url).href,
+      image: new URL("../../assets/prd_images/img2.jpg", import.meta.url).href,
       rating: 4.0,
     },
     {
       id: 3,
       name: "Supplement Lite",
       price: 999,
-      image: new URL("../assets/prd_images/img3.jpg", import.meta.url).href,
+      image: new URL("../../assets/prd_images/img3.jpg", import.meta.url).href,
       rating: 3.5,
     },
     {
       id: 4,
       name: "Supplement Max",
       price: 1499,
-      image: new URL("../assets/prd_images/img4.jpg", import.meta.url).href,
+      image: new URL("../../assets/prd_images/img4.jpg", import.meta.url).href,
       rating: 4.8,
     },
     {
       id: 5,
       name: "Supplement ultra",
       price: 4999,
-      image: new URL("../assets/prd_images/img5.jpg", import.meta.url).href,
+      image: new URL("../../assets/prd_images/img5.jpg", import.meta.url).href,
       rating: 5.0,
     },
   ];
@@ -99,4 +97,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeProd;

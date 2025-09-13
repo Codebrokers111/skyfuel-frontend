@@ -1,9 +1,10 @@
 import { useState, useContext, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./styling/Loginsignup.css";
-import { userContext } from "../context/userContext";
+import { userContext } from "../../context/userContext";
 import { useGoogleLogin } from "@react-oauth/google";
 import ReCAPTCHA from "react-google-recaptcha";
+import Loader from "../../components/Loader";
 
 const Login = (props) => {
   const { host, showAlert, Logdout, c_sitekey } = props.prop;
@@ -75,8 +76,8 @@ const Login = (props) => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center align-item-center my-2">
-        <span className="spinner-border"></span>
+      <div className="flex justify-center items-center my-2">
+        <Loader color="gray" size="large" />
       </div>
     );
   }
